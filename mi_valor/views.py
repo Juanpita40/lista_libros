@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from .models import Libro
 from .forms import LibroForm, BuscarLibroForm
+from django.contrib.auth.models import Permission
 from .forms import RegistroUsuarioForm
 from django.contrib.auth.forms import AuthenticationForm 
 from django.contrib.auth import login as auth_login, logout as auth_logout
@@ -38,11 +39,13 @@ def registro(request):
     if request.method == 'POST': 
         form = RegistroUsuarioForm(request.POST) 
         if form.is_valid(): 
-            form.save() 
+            user = form.save() 
+            permiso_desarrollador = Permission.objects.get(codename='development') 
+            user.user_permissions.add(permiso_desarrollador) 
+            user.save()
             return redirect('index') # Redirigir a la página de inicio después de registrar al usuario 
     else: 
         form = RegistroUsuarioForm() 
-
     return render(request, 'register.html', {'form': form})
     
 def login_view(request):

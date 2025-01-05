@@ -8,4 +8,9 @@ class Libro(models.Model):
     def __str__(self): 
         return self.titulo
     
-    
+    class Meta: 
+        permissions = [ 
+        ("development", "Permiso como Desarrollador"), 
+        ("scrum_master", "Permiso como Scrum Master"), 
+        ("product_owner", "Permiso como Product Owner"), 
+        ]
