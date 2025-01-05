@@ -1,0 +1,14 @@
+/* static/css/styles.css */ 
+.navbar .navbar-nav .nav-link { 
+    color: blue; /* Cambiar color de los enlaces de navegación a azul */ 
+} 
+  
+.navbar-brand { 
+    color: blue; /* Cambiar color del título del sitio web a azul */ 
+} 
+
+/* Si deseas que los colores cambien cuando el usuario pasa el ratón sobre los enlaces */ 
+.navbar-nav .nav-link:hover, 
+.navbar-brand:hover { 
+    color: darkblue; /* Color más oscuro para el efecto hover */ 
+}
