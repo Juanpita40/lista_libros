@@ -2,6 +2,7 @@
 from django.shortcuts import render, redirect
 from .models import Libro
 from .forms import LibroForm, BuscarLibroForm
+from .forms import RegistroUsuarioForm
 
 def inicio(request):
     return render(request, 'index.html')
@@ -29,3 +30,16 @@ def input_book(request):
         else: 
             form = LibroForm() # Crear un formulario vacío para solicitudes GET 
         return render(request, 'inputbook.html', {'form': form})
+
+def registro(request): 
+    if request.method == 'POST': 
+        form = RegistroUsuarioForm(request.POST) 
+        if form.is_valid(): 
+            form.save() 
+            return redirect('index') # Redirigir a la página de inicio después de registrar al usuario 
+    else: 
+        form = RegistroUsuarioForm() 
+        
+    return render(request, 'register.html', {'form': form})
+    
+
