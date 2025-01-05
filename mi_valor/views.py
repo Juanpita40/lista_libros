@@ -1,7 +1,7 @@
 # mi_valor/views.py
 from django.shortcuts import render, redirect
 from .models import Libro
-from .forms import IngresarLibroForm, BuscarLibroForm
+from .forms import LibroForm, BuscarLibroForm
 
 def inicio(request):
     return render(request, 'index.html')
@@ -21,12 +21,11 @@ def listar_libros(request):
     return render(request, 'listbook.html', context)
 
 def input_book(request): 
-    if request.method == 'POST': 
-        form = IngresarLibroForm(request.POST) 
-        if form.is_valid(): 
-            # Aquí puedes manejar los datos del formulario, como guardarlos en la base de datos 
-            return redirect('index') # Redirigir a la página de inicio o a otra página después de enviar el formulario 
-    else: 
-        form = IngresarLibroForm() 
-        
-    return render(request, 'inputbook.html', {'form': form})
+        if request.method == 'POST': 
+            form = LibroForm(request.POST) 
+            if form.is_valid(): 
+                form.save() # Guardar los datos del formulario en la base de datos 
+                return redirect('index') # Redirigir a la página de inicio o a otra página después de enviar el formulario 
+        else: 
+            form = LibroForm() # Crear un formulario vacío para solicitudes GET 
+        return render(request, 'inputbook.html', {'form': form})
