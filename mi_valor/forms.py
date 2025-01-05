@@ -27,5 +27,5 @@ class RegistroUsuarioForm(UserCreationForm):
         widgets = { 
             'username': forms.TextInput(attrs={'class': 'form-control'}), 
             'password1': forms.PasswordInput(attrs={'class': 'form-control'}), 
-            'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-control'}), 
         }
