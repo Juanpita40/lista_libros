@@ -1,0 +1,17 @@
+<!-- templates/logout.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Cerrar Sesión</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <form method="post">
+                {% csrf_token %}
+                <p>¿Estás seguro que quieres cerrar sesión?</p>
+                <button type="submit" class="btn btn-primary">Cerrar Sesión</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

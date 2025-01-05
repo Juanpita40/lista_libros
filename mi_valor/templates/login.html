@@ -1,0 +1,33 @@
+<!-- templates/login.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Iniciar Sesión</h1>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                        <div class="text-danger">{{ form.username.errors }}</div>
+                    {% endif %}
+                </div>
+                <div class="mb-3">
+                    {{ form.password.label_tag }}
+                    {{ form.password }}
+                    {% if form.password.errors %}
+                        <div class="text-danger">{{ form.password.errors }}</div>
+                    {% endif %}
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+            </form>
+            <p class="text-center mt-3">
+                ¿No tienes una cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
