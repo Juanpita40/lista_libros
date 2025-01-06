@@ -18,7 +18,20 @@ def listar_libros(request):
         libros = Libro.objects.filter(titulo__icontains=query) 
     else: 
         libros = Libro.objects.all() 
+
     libros_valoracion_alta = libros.filter(valoracion__gt=1500) 
+    
+    # Crear una lista de diccionarios con los datos y el rating 
+    libros_con_rating = [] 
+    for libro in libros: 
+        rating = libro.rating # Obtener el rating dinámico 
+        libros_con_rating.append({ 
+            'titulo': libro.titulo, 
+            'autor': libro.autor, 
+            'valoracion': libro.valoracion, 
+            'rating': rating,
+        })
+
     context = { 
         'libros_valoracion_alta': libros_valoracion_alta, 
         'libros': libros, 
@@ -30,7 +43,7 @@ def input_book(request):
             form = LibroForm(request.POST) 
             if form.is_valid(): 
                 form.save() # Guardar los datos del formulario en la base de datos 
-                return redirect('index') # Redirigir a la página de inicio o a otra página después de enviar el formulario 
+                return redirect('listar_libros') # Redirigir a la página de inicio o a otra página después de enviar el formulario 
         else: 
             form = LibroForm() # Crear un formulario vacío para solicitudes GET 
         return render(request, 'inputbook.html', {'form': form})

@@ -1,20 +1,38 @@
 <!-- templates/listbook.html -->
-{% extends 'layout.html' %}
-
-{% block content %}
-<div class="container">
-    <h1 class="mt-5">Libros con valoración mayor a 1500</h1>
-    <ul class="list-group">
-        {% for libro in libros_valoracion_alta %}
-            <li class="list-group-item">Título: {{ libro.titulo }}, Autor: {{ libro.autor }}, Valoración: {{ libro.valoracion }}</li>
-        {% endfor %}
-    </ul>
-
-    <h1 class="mt-5">Listado de todos los libros</h1>
-    <ul class="list-group">
-        {% for libro in libros %}
-            <li class="list-group-item">Título: {{ libro.titulo }}, Autor: {{ libro.autor }}, Valoración: {{ libro.valoracion }}</li>
-        {% endfor %}
-    </ul>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Listado de Libros</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    {% include 'navbar.html' %} <!-- Incluir el navbar -->
+    <div class="container">
+        <h1>Listado de Libros</h1>
+        <!-- Eliminar el formulario de búsqueda -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Valoración</th>
+                    <th>Rating</th> <!-- Nuevo campo de rating -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                <tr>
+                    <td>{{ libro.titulo }}</td>
+                    <td>{{ libro.autor }}</td>
+                    <td>{{ libro.valoracion }}</td>
+                    <td>{{ libro.rating }}</td> <!-- Mostrar el rating -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
