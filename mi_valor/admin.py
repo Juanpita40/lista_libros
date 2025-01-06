@@ -4,7 +4,7 @@ from .models import Libro
 
 @admin.register(Libro)
 class LibroAdmin(admin.ModelAdmin):
-    list_display = ('titulo', 'autor', 'valoracion')
+    list_display = ('titulo', 'autor', 'valoracion', 'rating')
     readonly_fields = ('fecha_creacion', 'fecha_modificacion') # Campos de solo lectura 
     search_fields = ('titulo', 'autor') 
     list_filter = ('valoracion', 'fecha_modificacion') # Filtro por valoración y fecha de modificación

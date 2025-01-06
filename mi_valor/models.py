@@ -11,6 +11,15 @@ class Libro(models.Model):
     def __str__(self): 
         return self.titulo
     
+    @property 
+    def rating(self): 
+        if self.valoracion < 1000: 
+            return 'Baja' 
+        elif 1000 <= self.valoracion <= 2500: 
+            return 'Media' 
+        else: 
+            return 'Alta'
+  
     class Meta: 
         permissions = [ 
         ("development", "Permiso como Desarrollador"), 
